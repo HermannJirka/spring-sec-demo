@@ -11,16 +11,16 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.NoOpPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
+import org.springframework.security.provisioning.JdbcUserDetailsManager;
 
+import javax.sql.DataSource;
 import java.util.List;
 
 @Configuration
 public class ProjectConfig {
     @Bean
-    public UserDetailsService userDetailsService(){
-        var user = new DummyUser("jirka","1234","read");
-        List<UserDetails> users = List.of(user);
-        return new InMemoryUserService(users);
+    public UserDetailsService userDetailsService(DataSource dataSource){
+      return new JdbcUserDetailsManager(dataSource);
     }
     @Bean
     public PasswordEncoder passwordEncoder(){
