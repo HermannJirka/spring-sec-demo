@@ -4,8 +4,8 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class Chapt02Pr01 {
+public class SecurityMainDemo {
     public static void main(String[] args) {
-        SpringApplication.run(Chapt02Pr01.class, args);
+        SpringApplication.run(SecurityMainDemo.class, args);
     }
 }
