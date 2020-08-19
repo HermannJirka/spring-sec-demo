@@ -10,6 +10,6 @@ public class WebConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http.httpBasic();
 
-        http.authorizeRequests().anyRequest().hasAnyAuthority("write","read");
+        http.authorizeRequests().anyRequest().hasAnyRole("ADMIN");
     }
 }
