@@ -13,6 +13,7 @@ public class WebConfig extends WebSecurityConfigurerAdapter {
         http.csrf().disable();
         http.authorizeRequests()
                 .mvcMatchers(HttpMethod.POST,"/a").authenticated()
+                .mvcMatchers("/a/b/**").authenticated()
                 .mvcMatchers(HttpMethod.GET,"/a").permitAll()
                 .anyRequest()
                 .denyAll();
