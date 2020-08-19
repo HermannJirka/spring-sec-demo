@@ -9,7 +9,10 @@ public class WebConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.httpBasic();
-
-        http.authorizeRequests().anyRequest().hasAnyAuthority("write","read");
+        http.authorizeRequests()
+                .mvcMatchers("/hello").hasRole("ADMIN")
+                .mvcMatchers("/ciao").hasRole("MANAGER")
+                .mvcMatchers("/guten").hasAnyRole("ADMIN","MANAGER")
+                .anyRequest().authenticated();
     }
 }

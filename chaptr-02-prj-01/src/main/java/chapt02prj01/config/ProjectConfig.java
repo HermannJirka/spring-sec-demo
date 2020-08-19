@@ -17,16 +17,20 @@ public class ProjectConfig {
 
         var usr1 = User.withUsername("jirka")
                 .password("1234")
-                .authorities("read")
+                .roles("ADMIN")
                 .build();
         var usr2 = User.withUsername("pepa")
                 .password("1234")
-                .authorities("write")
+                .roles("MANAGER")
+                .build();
+        var usr3 = User.withUsername("Jarda")
+                .password("1234")
+                .roles("USER")
                 .build();
 
         manager.createUser(usr1);
         manager.createUser(usr2);
-
+        manager.createUser(usr3);
         return manager;
     }
 
