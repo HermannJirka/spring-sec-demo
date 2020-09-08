@@ -10,11 +10,8 @@ public class WebConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.httpBasic();
-        http.csrf().disable();
         http.authorizeRequests()
-                .mvcMatchers(HttpMethod.POST,"/a").authenticated()
-                .mvcMatchers("/a/b/**").authenticated()
-                .mvcMatchers(HttpMethod.GET,"/a").permitAll()
+                .mvcMatchers("/product/{code:^[0-9]*$}").permitAll()
                 .anyRequest()
                 .denyAll();
     }
