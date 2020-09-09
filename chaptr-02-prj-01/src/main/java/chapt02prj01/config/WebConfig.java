@@ -11,8 +11,9 @@ public class WebConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http.httpBasic();
         http.authorizeRequests()
-                .mvcMatchers("/product/{code:^[0-9]*$}").permitAll()
+                .regexMatchers(".*/[us|uk|ca]+/[en|fr].*")
+                .authenticated()
                 .anyRequest()
-                .denyAll();
+                .hasAuthority("premium");
     }
 }
