@@ -4,19 +4,20 @@ import javax.servlet.*;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.logging.Logger;
 
-public class RequestValidationFilter implements Filter {
+public class AuthenticationLoggingFilter implements Filter {
+
+    private final Logger logger = Logger.getLogger(AuthenticationLoggingFilter.class.getName());
 
     @Override
     public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException {
         var httpRequest = (HttpServletRequest) servletRequest;
-        var httpResponse = (HttpServletResponse) servletResponse;
 
         String requestId = httpRequest.getHeader("Request-id");
-        if (requestId == null || requestId.isBlank()) {
-            httpResponse.setStatus(HttpServletResponse.SC_BAD_REQUEST);
-            return;
-        }
+
+        logger.info("Authentication was sucessfully request with id "+ requestId);
+
         filterChain.doFilter(servletRequest, servletResponse);
     }
 }
