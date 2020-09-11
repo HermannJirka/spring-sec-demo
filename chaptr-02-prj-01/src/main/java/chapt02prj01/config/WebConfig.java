@@ -1,5 +1,6 @@
 package chapt02prj01.config;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
@@ -7,10 +8,12 @@ import org.springframework.security.web.authentication.www.BasicAuthenticationFi
 
 @Configuration
 public class WebConfig extends WebSecurityConfigurerAdapter {
+    @Autowired
+    private StaticKeyAuthenticationFilter filter;
+
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http.addFilterBefore(new RequestValidationFilter(), BasicAuthenticationFilter.class)
-                .addFilterAfter(new AuthenticationLoggingFilter(),BasicAuthenticationFilter.class)
+        http.addFilterAt(filter, BasicAuthenticationFilter.class)
                 .authorizeRequests()
                 .anyRequest().permitAll();
     }
