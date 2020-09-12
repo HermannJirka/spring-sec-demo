@@ -1,23 +1,26 @@
 package chapt02prj01.config;
 
-import javax.servlet.*;
+import org.springframework.web.filter.OncePerRequestFilter;
+
+import javax.servlet.FilterChain;
+import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.logging.Logger;
 
-public class AuthenticationLoggingFilter implements Filter {
+public class AuthenticationLoggingFilter extends OncePerRequestFilter {
 
-    private final Logger logger = Logger.getLogger(AuthenticationLoggingFilter.class.getName());
+    private final Logger logger = Logger.getLogger(chapt02prj01.config.AuthenticationLoggingFilter.class.getName());
+
 
     @Override
-    public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException {
-        var httpRequest = (HttpServletRequest) servletRequest;
+    protected void doFilterInternal(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, FilterChain filterChain) throws ServletException, IOException {
 
-        String requestId = httpRequest.getHeader("Request-id");
+        String requestId = httpServletRequest.getHeader("Request-id");
 
-        logger.info("Authentication was sucessfully request with id "+ requestId);
+        logger.info("Authentication was sucessfully request with id " + requestId);
 
-        filterChain.doFilter(servletRequest, servletResponse);
+        filterChain.doFilter(httpServletRequest, httpServletResponse);
     }
 }
