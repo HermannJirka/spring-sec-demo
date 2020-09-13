@@ -9,14 +9,22 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.password.NoOpPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
-import org.springframework.security.web.csrf.CsrfFilter;
+import org.springframework.security.web.servlet.util.matcher.MvcRequestMatcher;
+import org.springframework.web.servlet.handler.HandlerMappingIntrospector;
 
 @Configuration
 public class WebConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-       http.authorizeRequests().anyRequest().authenticated();
-       http.formLogin().defaultSuccessUrl("/main",true);
+        http.csrf(c -> {
+            HandlerMappingIntrospector i = new HandlerMappingIntrospector();
+            MvcRequestMatcher m = new MvcRequestMatcher(i,"/ciao");
+            c.ignoringRequestMatchers(m);
+        });
+
+        http.authorizeRequests()
+                .anyRequest()
+                .permitAll();
     }
 
     @Bean

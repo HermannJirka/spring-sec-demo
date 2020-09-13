@@ -2,11 +2,19 @@ package chapt02prj01.controllers;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RestController;
 
-@Controller
+@RestController
 public class MainController {
-    @GetMapping("/main")
-    public String main() {
-        return "main.html";
+
+    @PostMapping("/main")
+    public String postHello() {
+        return "Post hello";
+    }
+
+    @PostMapping("/ciao")
+    public String postCiao() {
+        return "Post ciao";
     }
 }
