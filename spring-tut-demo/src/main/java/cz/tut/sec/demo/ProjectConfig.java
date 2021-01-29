@@ -1,4 +1,4 @@
-package chapt02prj01.config;
+package cz.tut.sec.demo;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
