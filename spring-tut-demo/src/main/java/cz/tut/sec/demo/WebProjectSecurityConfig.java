@@ -7,12 +7,19 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 @Configuration
 public class WebProjectSecurityConfig extends WebSecurityConfigurerAdapter {
 
+    private final CustomAuthenticationFailureHandler authenticationFailureHandler;
+    private final CustomAuthenticationSuccessHandler authenticationSuccessHandler;
+
+    public WebProjectSecurityConfig(CustomAuthenticationFailureHandler authenticationFailureHandler, CustomAuthenticationSuccessHandler authenticationSuccessHandler) {
+        this.authenticationFailureHandler = authenticationFailureHandler;
+        this.authenticationSuccessHandler = authenticationSuccessHandler;
+    }
+
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http.httpBasic(c -> {
-            c.realmName("other");
-        });
-
+        http.formLogin().successHandler(authenticationSuccessHandler)
+                .failureHandler(authenticationFailureHandler)
+                .and().httpBasic();
         http.authorizeRequests().anyRequest().authenticated();
     }
 }
