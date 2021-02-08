@@ -1,0 +1,17 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.7.xsd">
+    <changeSet author="Jiri Hermann" id="01_insert_data">
+        <sql>
+            INSERT INTO users (id, username, password, algorithm)
+            VALUES ('6c52afbe-6661-11eb-ae93-0242ac130002','john', '$2a$10$xn3LI/AjqicFYZFruSwve.681477XaVNaUQbr1gioaWPn4t1KsnmG', 'BCRYPT');
+            INSERT INTO authority (id, name, users_id)
+            VALUES ('6c52b220-6661-11eb-ae93-0242ac130002', 'READ', '6c52afbe-6661-11eb-ae93-0242ac130002');
+            INSERT INTO authority (id, name, users_id)
+            VALUES ('6c52b31a-6661-11eb-ae93-0242ac130002', 'WRITE', '6c52afbe-6661-11eb-ae93-0242ac130002');
+            INSERT INTO product (id, name, price, currency)
+            VALUES ('6c52b3ec-6661-11eb-ae93-0242ac130002', 'Chocolate', '10', 'USD');
+        </sql>
+    </changeSet>
+</databaseChangeLog>

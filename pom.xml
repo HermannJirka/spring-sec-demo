@@ -6,6 +6,7 @@
     <modules>
         <module>chaptr-02-prj-01</module>
 		<module>spring-tut-demo</module>
+		<module>secure-web-app</module>
     </modules>
     <parent>
 		<groupId>org.springframework.boot</groupId>
