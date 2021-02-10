@@ -33,8 +33,7 @@ public class ProjectConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.httpBasic();
-        String expression = "hasAuthority('READ') and !hasAuthority('DELETE')";
-        http.authorizeRequests().anyRequest().access(expression);
+        http.authorizeRequests().anyRequest().hasRole("ADMIN");
     }
 }
 

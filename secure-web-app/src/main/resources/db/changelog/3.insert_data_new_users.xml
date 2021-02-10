@@ -1,0 +1,21 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.7.xsd">
+    <changeSet author="Jiri Hermann" id="01_insert_data">
+        <sql>
+            INSERT INTO users (id, username, password, algorithm)
+            VALUES ('5285342e-6be0-11eb-9439-0242ac130002','jerry', '$2a$10$xn3LI/AjqicFYZFruSwve.681477XaVNaUQbr1gioaWPn4t1KsnmG', 'BCRYPT');
+            INSERT INTO authority (id, name, users_id)
+            VALUES ('528536c2-6be0-11eb-9439-0242ac130002', 'ROLE_ADMIN', '5285342e-6be0-11eb-9439-0242ac130002');
+            INSERT INTO users (id, username, password, algorithm)
+            VALUES ('528537c6-6be0-11eb-9439-0242ac130002','jerry', '$2a$10$xn3LI/AjqicFYZFruSwve.681477XaVNaUQbr1gioaWPn4t1KsnmG', 'BCRYPT');
+            INSERT INTO authority (id, name, users_id)
+            VALUES ('52853a8c-6be0-11eb-9439-0242ac130002', 'ROLE_MANAGER', '528537c6-6be0-11eb-9439-0242ac130002');
+            INSERT INTO users (id, username, password, algorithm)
+            VALUES ('52853b68-6be0-11eb-9439-0242ac130002','jerry', '$2a$10$xn3LI/AjqicFYZFruSwve.681477XaVNaUQbr1gioaWPn4t1KsnmG', 'BCRYPT');
+            INSERT INTO authority (id, name, users_id)
+            VALUES ('52853c26-6be0-11eb-9439-0242ac130002', 'ROLE_CUSTOMER', '52853b68-6be0-11eb-9439-0242ac130002');
+        </sql>
+    </changeSet>
+</databaseChangeLog>
