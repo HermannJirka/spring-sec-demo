@@ -1,0 +1,11 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.7.xsd">
+    <changeSet author="Jiri Hermann" id="01_insert_data">
+        <sql>
+            INSERT INTO authority (id, name, users_id)
+            VALUES ('6c52b31b-6661-11eb-ae93-0242ac130002', 'DELETE', '6c52afbe-6661-11eb-ae93-0242ac130002');
+        </sql>
+    </changeSet>
+</databaseChangeLog>
