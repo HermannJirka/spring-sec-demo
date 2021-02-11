@@ -12,4 +12,9 @@ public class HelloController {
     public String hello(Authentication authentication) {
         return "Hello: " + authentication.getName();
     }
+
+    @GetMapping("/ciao")
+    public String ciao(Authentication authentication) {
+        return "Ciao!: " + authentication.getName();
+    }
 }

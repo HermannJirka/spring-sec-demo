@@ -33,7 +33,10 @@ public class ProjectConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.httpBasic();
-        http.authorizeRequests().anyRequest().denyAll();
+
+        http.authorizeRequests()
+                .mvcMatchers("/ciao").hasRole("ADMIN")
+                .mvcMatchers("/hello").hasRole("MANAGER");
     }
 }
 
