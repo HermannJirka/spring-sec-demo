@@ -36,12 +36,10 @@ public class ProjectConfig extends WebSecurityConfigurerAdapter {
 
 
         http.authorizeRequests()
-                .mvcMatchers("/email/{email:.*(.+@.+\\.com)}")
-                .permitAll()
+                .regexMatchers(".*/[us|uk|ca]+/[en|fr].*")
+                .authenticated()
                 .anyRequest()
-                .denyAll();
-
-        http.csrf().disable();
+                .hasRole("ADMIN");
     }
 }
 
