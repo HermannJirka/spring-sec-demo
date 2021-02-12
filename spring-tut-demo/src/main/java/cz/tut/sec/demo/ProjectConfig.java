@@ -36,10 +36,8 @@ public class ProjectConfig extends WebSecurityConfigurerAdapter {
 
 
         http.authorizeRequests()
-                .mvcMatchers("/product/{code:^[0-9]*$}")
-                .permitAll()
-                .anyRequest()
-                .denyAll();
+                .antMatchers("/hello")
+                .authenticated();
 
         http.csrf().disable();
     }
