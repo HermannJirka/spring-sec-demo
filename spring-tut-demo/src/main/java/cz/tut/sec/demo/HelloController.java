@@ -20,21 +20,37 @@ public class HelloController {
     }
 
     @GetMapping("/a")
-    public String getA(){
+    public String getA() {
         return "works";
     }
+
     @PostMapping("/a")
-    public String postA(){
+    public String postA() {
         return "works";
     }
 
     @GetMapping("/a/b")
-    public String getAB(){
+    public String getAB() {
         return "works";
     }
 
     @GetMapping("/a/b/c")
-    public String getABC(){
+    public String getABC() {
+        return "works";
+    }
+
+    @GetMapping("/b/a")
+    public String getBA() {
+        return "works";
+    }
+
+    @PostMapping("/b/a")
+    public String postBA() {
+        return "works";
+    }
+
+    @GetMapping("/b/a/c")
+    public String getBAC() {
         return "works";
     }
 

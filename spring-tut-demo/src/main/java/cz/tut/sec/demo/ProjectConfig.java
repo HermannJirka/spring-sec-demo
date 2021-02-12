@@ -3,7 +3,6 @@ package cz.tut.sec.demo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
@@ -37,9 +36,9 @@ public class ProjectConfig extends WebSecurityConfigurerAdapter {
 
 
         http.authorizeRequests()
-                .mvcMatchers(HttpMethod.GET, "/a")
+                .mvcMatchers("/a/b/**")
                 .authenticated()
-                .mvcMatchers(HttpMethod.POST, "/a")
+                .mvcMatchers("/b/**")
                 .permitAll()
                 .anyRequest()
                 .denyAll();
