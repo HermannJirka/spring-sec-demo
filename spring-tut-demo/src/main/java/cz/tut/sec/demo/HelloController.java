@@ -10,8 +10,8 @@ import org.springframework.web.bind.annotation.RestController;
 @Log4j2
 public class HelloController {
     @GetMapping("/hello")
-    public String hello(Authentication authentication) {
-        return "Hello: " + authentication.getName();
+    public String hello() {
+        return "Hello: ";
     }
 
     @GetMapping("/ciao")

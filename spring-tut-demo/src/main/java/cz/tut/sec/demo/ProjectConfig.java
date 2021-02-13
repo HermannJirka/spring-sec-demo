@@ -1,5 +1,6 @@
 package cz.tut.sec.demo;
 
+import cz.tut.sec.demo.security.filter.AuthenticationLoggingFilter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -8,6 +9,7 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.scrypt.SCryptPasswordEncoder;
+import org.springframework.security.web.authentication.www.BasicAuthenticationFilter;
 
 @Configuration
 public class ProjectConfig extends WebSecurityConfigurerAdapter {
@@ -32,14 +34,12 @@ public class ProjectConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http.httpBasic();
-
-
-        http.authorizeRequests()
-                .regexMatchers(".*/[us|uk|ca]+/[en|fr].*")
-                .authenticated()
-                .anyRequest()
-                .hasRole("ADMIN");
+        http.addFilterBefore(
+                new RequestValidatorFilter(),
+                BasicAuthenticationFilter.class)
+                .addFilterAfter(new AuthenticationLoggingFilter(), BasicAuthenticationFilter.class)
+                .authorizeRequests()
+                .anyRequest().permitAll();
     }
 }
 
