@@ -1,6 +1,7 @@
 package cz.tut.sec.demo;
 
 import cz.tut.sec.demo.security.filter.AuthenticationLoggingFilter;
+import cz.tut.sec.demo.security.filter.StaticAuthenticationFilter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -16,6 +17,10 @@ public class ProjectConfig extends WebSecurityConfigurerAdapter {
 
     @Autowired
     private AuthenticationProviderService authenticationProvider;
+
+    @Autowired
+    private StaticAuthenticationFilter filter;
+
 
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
@@ -34,12 +39,10 @@ public class ProjectConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http.addFilterBefore(
-                new RequestValidatorFilter(),
-                BasicAuthenticationFilter.class)
-                .addFilterAfter(new AuthenticationLoggingFilter(), BasicAuthenticationFilter.class)
-                .authorizeRequests()
-                .anyRequest().permitAll();
+            http
+                    .authorizeRequests()
+
+                    .anyRequest().permitAll();
     }
 }
 
